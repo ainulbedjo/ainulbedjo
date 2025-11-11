@@ -1,13 +1,13 @@
 <img src="https://github-readme-stats.vercel.app/api?username=ainulbedjo&show_icons=true&theme=default&hide_rank=true" align="left"/>
 
 ### Hi there 👋
-
+<!--
 Hi, my name is Ainul.
 <br />
 I mainly using Kotlin for hobbies and professional purposes.
 <br />
 Striving to learn for more and will be getting my hands on Go sometimes soon.
-
+-->
 
 [![wakatime](https://wakatime.com/badge/user/82b476f4-0818-4530-a24c-5e7ba9c8d8e8.svg)](https://wakatime.com/@82b476f4-0818-4530-a24c-5e7ba9c8d8e8)
 
