@@ -5,56 +5,33 @@
    Documented in DESIGN_SYSTEM.md
    ============================================================ */
 
-:root {
+/*
+   Colors live directly in @theme so Tailwind generates the utilities
+   (bg-paper, text-ink-faint, …). The :root block below mirrors them as
+   semantic vars for the raw CSS / inline styles that use var(--ink) etc.
+*/
+@theme {
   /* Surfaces — warm cream paper */
-  --paper: #faf8f3;
-  --paper-white: #ffffff;
-  --paper-tan: #f6f0e6;
-  --paper-tan-deep: #f1e8d8;
+  --color-paper: #f7f0e3;
+  --color-paper-white: #ffffff;
+  --color-paper-tan: #f6f0e6;
+  --color-paper-tan-deep: #f1e8d8;
 
   /* Ink */
-  --ink: #1a1a1a;
-  --ink-body: #333333;
-  --ink-muted: #666666;
-  --ink-soft: #8a8a8a;
-  --ink-faint: #9a9a9a;
+  --color-ink: #1a1a1a;
+  --color-ink-body: #333333;
+  --color-ink-muted: #666666;
+  --color-ink-soft: #8a8a8a;
+  --color-ink-faint: #9a9a9a;
 
   /* Lines */
-  --rule: #ececec;
-  --rule-soft: #dcdcdc;
-  --rule-ink: #1a1a1a;
+  --color-rule: #ececec;
+  --color-rule-soft: #dcdcdc;
 
   /* Code surface (dark) */
-  --code-bg: #1a1a1a;
-  --code-bar: #141414;
-  --code-line: #e2e2e2;
-  --code-gutter: #555555;
-  --code-comment: #7d9a6d;
-
-  /* Convenience aliases used by the Next.js starter */
-  --background: var(--paper);
-  --foreground: var(--ink);
-}
-
-@theme inline {
-  /* Colors */
-  --color-paper: var(--paper);
-  --color-paper-white: var(--paper-white);
-  --color-paper-tan: var(--paper-tan);
-  --color-paper-tan-deep: var(--paper-tan-deep);
-  --color-ink: var(--ink);
-  --color-ink-body: var(--ink-body);
-  --color-ink-muted: var(--ink-muted);
-  --color-ink-soft: var(--ink-soft);
-  --color-ink-faint: var(--ink-faint);
-  --color-rule: var(--rule);
-  --color-rule-soft: var(--rule-soft);
-  --color-code-bg: var(--code-bg);
-  --color-code-bar: var(--code-bar);
-  --color-code-comment: var(--code-comment);
-
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-code-bg: #1a1a1a;
+  --color-code-bar: #141414;
+  --color-code-comment: #7d9a6d;
 
   /* Fonts (wired up in layout.tsx via next/font) */
   --font-display: var(--font-shantell), "Shantell Sans", cursive;
@@ -62,28 +39,63 @@
   --font-mono: var(--font-jetbrains-mono), "JetBrains Mono", monospace;
 }
 
-* {
-  box-sizing: border-box;
+:root {
+  /* Semantic aliases for raw CSS / inline styles (var(--ink), etc.) */
+  --paper: #f7f0e3;
+  --paper-white: #ffffff;
+  --paper-tan: #f6f0e6;
+  --paper-tan-deep: #f1e8d8;
+
+  --ink: #1a1a1a;
+  --ink-body: #333333;
+  --ink-muted: #666666;
+  --ink-soft: #8a8a8a;
+  --ink-faint: #9a9a9a;
+
+  --rule: #ececec;
+  --rule-soft: #dcdcdc;
+  --rule-ink: #1a1a1a;
+
+  --code-bg: #1a1a1a;
+  --code-bar: #141414;
+  --code-line: #e2e2e2;
+  --code-gutter: #555555;
+  --code-comment: #7d9a6d;
+
+  /* Aliases used by the Next.js starter */
+  --background: var(--paper);
+  --foreground: var(--ink);
 }
 
-html {
-  scroll-behavior: smooth;
-}
+/*
+   Base resets go in @layer base so they rank BELOW Tailwind utilities.
+   (An unlayered `a { color: inherit }` would otherwise beat every
+   text-* utility on links, regardless of specificity.)
+*/
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
 
-body {
-  margin: 0;
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--font-serif);
-  -webkit-font-smoothing: antialiased;
-}
+  html {
+    scroll-behavior: smooth;
+  }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-serif);
+    -webkit-font-smoothing: antialiased;
+  }
 
-::selection {
-  background: var(--ink);
-  color: #fff;
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  ::selection {
+    background: var(--ink);
+    color: #fff;
+  }
 }

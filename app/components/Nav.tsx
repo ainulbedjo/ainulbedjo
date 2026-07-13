@@ -30,7 +30,7 @@ type NavProps = {
 export function Nav({ active, brand = "AinulBedjo", size = "md" }: NavProps) {
   return (
     <Container size={size}>
-      <nav className="flex items-center justify-between py-7">
+      <nav className="flex flex-wrap items-center justify-between py-7" style={{ gap: 16 }}>
         <Link
           href="/"
           className="font-display text-ink"

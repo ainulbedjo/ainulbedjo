@@ -15,7 +15,7 @@ export function Container({ children, size = "md", className = "" }: ContainerPr
   const maxWidth = size === "lg" ? 1120 : 1040;
   return (
     <div
-      className={`mx-auto px-10 ${className}`}
+      className={`mx-auto px-3 ${className}`}
       style={{ maxWidth }}
     >
       {children}

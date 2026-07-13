@@ -23,6 +23,10 @@
 # misc
 .DS_Store
 *.pem
+dev-screenshot.png
+
+# claude code (keep launch.json, ignore machine-local settings)
+.claude/settings.local.json
 
 # debug
 npm-debug.log*

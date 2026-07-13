@@ -1,65 +1,126 @@
-import Image from "next/image";
+import { Nav, Footer, Container, Button, ListRow } from "@/app/components";
 
-export default function Home() {
+type FeedItem = {
+  href: string;
+  date: string;
+  title: string;
+  meta: string;
+};
+
+const FEED: FeedItem[] = [
+  {
+    href: "/leetcode/binary-tree-maximum-path-sum",
+    date: "JUL 08",
+    title: "Binary Tree Maximum Path Sum",
+    meta: "LeetCode · Hard · 12 min read",
+  },
+  {
+    href: "/projects",
+    date: "JUL 02",
+    title: "Building Veranda, my little front porch",
+    meta: "Project note · 6 min read",
+  },
+  {
+    href: "/leetcode/lru-cache",
+    date: "JUN 26",
+    title: "LRU Cache, three ways",
+    meta: "LeetCode · Medium · 9 min read",
+  },
+  {
+    href: "/leetcode/word-ladder",
+    date: "JUN 19",
+    title: "Word Ladder & the BFS I kept getting wrong",
+    meta: "LeetCode · Hard · 11 min read",
+  },
+];
+
+export default function Veranda() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <>
+      <Nav active="veranda" />
+
+      {/* HERO */}
+      <Container>
+        <div className="pt-12 pb-6">
+          <div
+            className="font-mono text-ink-faint"
+            style={{ fontSize: 12, letterSpacing: 1, marginBottom: 26 }}
+          >
+            THE VERANDA — EST. 2026
+          </div>
+          <h1
+            className="font-display"
+            style={{ fontWeight: 600, fontSize: 78, lineHeight: 1.02, margin: 0, letterSpacing: "-1.5px" }}
+          >
+            Hi, I&apos;m AinulBedjo.
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p
+            className="text-ink-body"
+            style={{ fontSize: 23, lineHeight: 1.7, maxWidth: 580, margin: "30px 0 0" }}
+          >
+            Software engineer &amp; full-time tinkerer. This is my porch — I think out
+            loud here: project notes, half-formed ideas, and the LeetCode problems I{" "}
+            <em style={{ fontStyle: "italic" }}>actually</em> understood. Pull up a chair.
           </p>
+          <div className="flex items-center" style={{ gap: 22, marginTop: 36 }}>
+            <Button href="/about" withArrow>
+              more about me
+            </Button>
+            <Button href="#recent" variant="underline">
+              read the latest
+            </Button>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </Container>
+
+      {/* RECENT FEED */}
+      <Container>
+        <div id="recent" style={{ paddingTop: 70, paddingBottom: 40 }}>
+          <div className="flex items-baseline" style={{ gap: 14, marginBottom: 8 }}>
+            <h2 className="font-display" style={{ fontWeight: 700, fontSize: 26, margin: 0 }}>
+              Recent
+            </h2>
+            <span className="font-mono text-ink-faint" style={{ fontSize: 12 }}>
+              writeups &amp; notes
+            </span>
+          </div>
+
+          {FEED.map((item, i) => (
+            <ListRow key={item.href + i} href={item.href} closeBottom={i === FEED.length - 1}>
+              <span
+                className="font-mono text-ink-faint"
+                style={{ fontSize: 12, width: 80, flex: "none" }}
+              >
+                {item.date}
+              </span>
+              <span style={{ flex: 1 }}>
+                <span
+                  style={{ display: "block", fontSize: 24, fontWeight: 500, marginBottom: 5 }}
+                >
+                  {item.title}
+                </span>
+                <span
+                  className="font-mono text-ink-soft"
+                  style={{ display: "block", fontSize: 12 }}
+                >
+                  {item.meta}
+                </span>
+              </span>
+              <span className="font-display text-ink" style={{ fontSize: 20 }}>
+                ↗
+              </span>
+            </ListRow>
+          ))}
+
+          <div className="flex justify-end" style={{ marginTop: 26 }}>
+            <Button href="/leetcode" variant="underline">
+              see all writeups
+            </Button>
+          </div>
         </div>
-      </main>
-    </div>
+      </Container>
+
+      <Footer />
+    </>
   );
 }
