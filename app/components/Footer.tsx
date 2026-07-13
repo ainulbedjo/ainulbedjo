@@ -1,7 +1,7 @@
 import { Container } from "./Container";
 
 type FooterProps = {
-  size?: "md" | "lg";
+  size?: "md" | "lg" | "xl";
   /** Copyright name. */
   name?: string;
   /** Copyright year. */

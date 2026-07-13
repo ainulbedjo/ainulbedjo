@@ -4,13 +4,14 @@ import { HandUnderline } from "./marks";
 
 export type NavKey = "about" | "projects" | "veranda" | "leetcode";
 
-type NavItem = { key: NavKey; label: string; href: string };
+/** `underline` is the hand-drawn stroke width, sized to the word (see design). */
+type NavItem = { key: NavKey; label: string; href: string; underline: number };
 
 const NAV_ITEMS: readonly NavItem[] = [
-  { key: "about", label: "about", href: "/about" },
-  { key: "projects", label: "projects", href: "/projects" },
-  { key: "veranda", label: "veranda", href: "/" },
-  { key: "leetcode", label: "leetcode", href: "/leetcode" },
+  { key: "about", label: "about", href: "/about", underline: 46 },
+  { key: "projects", label: "projects", href: "/projects", underline: 60 },
+  { key: "veranda", label: "veranda", href: "/", underline: 70 },
+  { key: "leetcode", label: "leetcode", href: "/leetcode", underline: 62 },
 ];
 
 type NavProps = {
@@ -19,7 +20,7 @@ type NavProps = {
   /** Brand text; varies per page (e.g. "AinulBedjo", "ainulbedjo."). */
   brand?: string;
   /** Container width to align with the page below. */
-  size?: "md" | "lg";
+  size?: "md" | "lg" | "xl";
 };
 
 /**
@@ -49,7 +50,7 @@ export function Nav({ active, brand = "AinulBedjo", size = "md" }: NavProps) {
                 style={isActive ? { position: "relative" } : undefined}
               >
                 {item.label}
-                {isActive ? <HandUnderline /> : null}
+                {isActive ? <HandUnderline width={item.underline} /> : null}
               </Link>
             );
           })}

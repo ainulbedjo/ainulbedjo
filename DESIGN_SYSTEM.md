@@ -134,7 +134,7 @@ import { Nav, Footer, Button, Chip, Tag, Difficulty, ListRow, OutlineCard, CodeB
 
 | Component     | File                                                       | Purpose                                                     |
 | ------------- | ---------------------------------------------------------- | ----------------------------------------------------------- |
-| `Container`   | [`Container.tsx`](app/components/Container.tsx)            | Centered max-width wrapper (`md` 1040 / `lg` 1120).         |
+| `Container`   | [`Container.tsx`](app/components/Container.tsx)            | Centered max-width wrapper (`md` 1040 / `lg` 1120 / `xl` 1320). |
 | `Nav`         | [`Nav.tsx`](app/components/Nav.tsx)                        | Brand + links; active link gets the hand-drawn underline.  |
 | `Footer`      | [`Footer.tsx`](app/components/Footer.tsx)                  | Heavy top rule, copyright, "built on the veranda ✎".        |
 | `Button`      | [`Button.tsx`](app/components/Button.tsx)                  | `solid` (ink) and `underline` (text + 2px rule) variants.  |
@@ -148,12 +148,16 @@ import { Nav, Footer, Button, Chip, Tag, Difficulty, ListRow, OutlineCard, CodeB
 
 ### Component notes
 
-**Nav** — brand text varies across pages (`AinulBedjo`, `ainulbedjo.`); pass it as a
-prop. Exactly one link is `active` and carries `HandUnderline`.
+**Nav** — brand text varies across pages (`AinulBedjo` on the Veranda hero,
+`ainulbedjo.` elsewhere); pass it as a prop. Exactly one link is `active` and carries
+`HandUnderline`, whose stroke width is sized per word to match the design (about 46,
+projects 60, leetcode 62, veranda 70). `size` aligns the nav with the page container
+below it — use `xl` on the wide Projects layout.
 
 **Button** — `solid` is ink background, white mono text, `3px` radius, optional trailing
 `HandArrow`. `underline` is ink text over a `2px` ink underline; use for secondary
-actions ("read the latest", "open on leetcode ↗").
+actions ("read the latest", "open on leetcode ↗"). Internal (`/…`) hrefs render via
+`next/link`; `mailto:`, `#anchor`, and external hrefs render as a plain `<a>`.
 
 **Difficulty** — HARD/MEDIUM render in full-strength ink; EASY drops to `ink-soft`. The
 `solid` variant (inverted black pill) is for the detail-page header only.

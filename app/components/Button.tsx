@@ -13,6 +13,11 @@ type ButtonProps = {
   className?: string;
 };
 
+/** Internal app routes use next/link; protocol/anchor/external use a plain <a>. */
+function isInternal(href: string) {
+  return href.startsWith("/") && !href.startsWith("//");
+}
+
 /**
  * Link-styled call to action.
  * - `solid`: ink background, white mono text, 3px radius, optional trailing arrow.
@@ -26,37 +31,34 @@ export function Button({
   withArrow = false,
   className = "",
 }: ButtonProps) {
-  if (variant === "underline") {
+  const style: React.CSSProperties =
+    variant === "underline"
+      ? { fontSize: 13, fontWeight: 500, borderBottom: "2px solid #1a1a1a", paddingBottom: 3 }
+      : { gap: 9, fontSize: 13, fontWeight: 500, padding: "13px 22px", borderRadius: 3 };
+
+  const classes =
+    variant === "underline"
+      ? `inline-flex items-center font-mono text-ink ${className}`
+      : `inline-flex items-center bg-ink font-mono text-white ${className}`;
+
+  const content = (
+    <>
+      {children}
+      {variant === "solid" && withArrow ? <HandArrow color="#fff" /> : null}
+    </>
+  );
+
+  if (isInternal(href)) {
     return (
-      <Link
-        href={href}
-        className={`inline-flex items-center font-mono text-ink ${className}`}
-        style={{
-          fontSize: 13,
-          fontWeight: 500,
-          borderBottom: "2px solid #1a1a1a",
-          paddingBottom: 3,
-        }}
-      >
-        {children}
+      <Link href={href} className={classes} style={style}>
+        {content}
       </Link>
     );
   }
 
   return (
-    <Link
-      href={href}
-      className={`inline-flex items-center bg-ink font-mono text-white ${className}`}
-      style={{
-        gap: 9,
-        fontSize: 13,
-        fontWeight: 500,
-        padding: "13px 22px",
-        borderRadius: 3,
-      }}
-    >
-      {children}
-      {withArrow ? <HandArrow color="#fff" /> : null}
-    </Link>
+    <a href={href} className={classes} style={style}>
+      {content}
+    </a>
   );
 }
