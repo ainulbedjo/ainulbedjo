@@ -20,13 +20,16 @@ const MAX_WIDTH: Record<ContainerSize, number> = {
 
 /**
  * Centered max-width wrapper with the standard 40px side padding.
+ * `width: 100%` matters: the page mounts inside a `flex flex-col` body, where
+ * `mx-auto` alone would shrink the box to its content width and float it in the
+ * middle. Filling the cross axis first lets max-width + auto margins center it.
  * See DESIGN_SYSTEM.md §4.
  */
 export function Container({ children, size = "md", className = "" }: ContainerProps) {
   const maxWidth = MAX_WIDTH[size];
   return (
     <div
-      className={`mx-auto px-3 ${className}`}
+      className={`mx-auto w-full px-10 ${className}`}
       style={{ maxWidth }}
     >
       {children}
