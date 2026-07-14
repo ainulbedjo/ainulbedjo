@@ -22,7 +22,7 @@
   --color-ink-body: #333333;
   --color-ink-muted: #666666;
   --color-ink-soft: #8a8a8a;
-  --color-ink-faint: #9a9a9a;
+  --color-ink-faint: #858585;
 
   /* Lines */
   --color-rule: #ececec;
@@ -50,7 +50,7 @@
   --ink-body: #333333;
   --ink-muted: #666666;
   --ink-soft: #8a8a8a;
-  --ink-faint: #9a9a9a;
+  --ink-faint: #858585;
 
   --rule: #ececec;
   --rule-soft: #dcdcdc;
@@ -67,35 +67,28 @@
   --foreground: var(--ink);
 }
 
-/*
-   Base resets go in @layer base so they rank BELOW Tailwind utilities.
-   (An unlayered `a { color: inherit }` would otherwise beat every
-   text-* utility on links, regardless of specificity.)
-*/
-@layer base {
-  * {
-    box-sizing: border-box;
-  }
+* {
+  box-sizing: border-box;
+}
 
-  html {
-    scroll-behavior: smooth;
-  }
+html {
+  scroll-behavior: smooth;
+}
 
-  body {
-    margin: 0;
-    background: var(--paper);
-    color: var(--ink);
-    font-family: var(--font-serif);
-    -webkit-font-smoothing: antialiased;
-  }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-serif);
+  -webkit-font-smoothing: antialiased;
+}
 
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
-  ::selection {
-    background: var(--ink);
-    color: #fff;
-  }
+::selection {
+  background: var(--ink);
+  color: #fff;
 }

@@ -31,7 +31,7 @@ export function OutlineCard({
       {eyebrow ? (
         <div
           className="font-mono text-ink-faint"
-          style={{ fontSize: 11, letterSpacing: "0.5px", marginBottom: 12 }}
+          style={{ fontSize: 13, fontWeight: "bold", letterSpacing: "0.5px", marginBottom: 12 }}
         >
           {eyebrow}
         </div>

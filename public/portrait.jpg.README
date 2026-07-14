@@ -1,0 +1,2 @@
+Drop your portrait here as public/portrait.jpg (or .png and update the src in app/about/page.tsx).
+Roughly square works best (rendered at 340x340, object-fit: cover).

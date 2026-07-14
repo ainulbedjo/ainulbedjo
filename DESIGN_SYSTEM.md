@@ -53,7 +53,7 @@ panel — treat them as the only allowed page backgrounds.
 | `--ink-body`  | `#333333` | `text-ink-body`  | Long-form paragraph prose                  |
 | `--ink-muted` | `#666666` | `text-ink-muted` | Secondary captions (complexity notes)      |
 | `--ink-soft`  | `#8a8a8a` | `text-ink-soft`  | Tertiary metadata (topics, difficulty)     |
-| `--ink-faint` | `#9a9a9a` | `text-ink-faint` | Inactive nav, labels, dates, gutter        |
+| `--ink-faint` | `#858585` | `text-ink-faint` | Inactive nav, labels, dates, gutter        |
 
 ### Lines
 
@@ -108,6 +108,10 @@ Three families, loaded via `next/font/google` in
 Details: display headings use `letter-spacing:-1px` (`-1.5px` at hero). Uppercase mono
 labels use `letter-spacing:0.5–1px`. Italic (`<em>`) is Newsreader italic, used for
 emphasis in prose.
+
+**Faint mono labels** (`font-mono text-ink-faint` — eyebrows, dates, gutter, meta) are
+standardized at `fontSize:13` / `fontWeight:"bold"` so they read clearly against the
+lighter `#858585` ink-faint.
 
 ---
 

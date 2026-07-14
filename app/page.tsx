@@ -15,12 +15,6 @@ const FEED: FeedItem[] = [
     meta: "LeetCode · Hard · 12 min read",
   },
   {
-    href: "/projects",
-    date: "JUL 02",
-    title: "Building Veranda, my little front porch",
-    meta: "Project note · 6 min read",
-  },
-  {
     href: "/leetcode/lru-cache",
     date: "JUN 26",
     title: "LRU Cache, three ways",
@@ -44,7 +38,7 @@ export default function Veranda() {
         <div className="pt-12 pb-6">
           <div
             className="font-mono text-ink-faint"
-            style={{ fontSize: 12, letterSpacing: 1, marginBottom: 26 }}
+            style={{ fontSize: 13, fontWeight: "bold", letterSpacing: 1, marginBottom: 26 }}
           >
             THE VERANDA — EST. 2026
           </div>
@@ -52,15 +46,15 @@ export default function Veranda() {
             className="font-display"
             style={{ fontWeight: 600, fontSize: 78, lineHeight: 1.02, margin: 0, letterSpacing: "-1.5px" }}
           >
-            Hi, I&apos;m AinulBedjo.
+            Hi, I&apos;m Ainul.
           </h1>
           <p
             className="text-ink-body"
             style={{ fontSize: 23, lineHeight: 1.7, maxWidth: 580, margin: "30px 0 0" }}
           >
-            Software engineer &amp; full-time tinkerer. This is my porch — I think out
-            loud here: project notes, half-formed ideas, and the LeetCode problems I{" "}
-            <em style={{ fontStyle: "italic" }}>actually</em> understood. Pull up a chair.
+            Software engineer &amp; full-time tinkerer. 
+            I build mobile apps, explore new tech, and write about what I learn along the way.
+            Also some leetcode problems, because I like to keep my brain sharp.
           </p>
           <div className="flex items-center" style={{ gap: 22, marginTop: 36 }}>
             <Button href="/about" withArrow>
@@ -80,7 +74,7 @@ export default function Veranda() {
             <h2 className="font-display" style={{ fontWeight: 700, fontSize: 26, margin: 0 }}>
               Recent
             </h2>
-            <span className="font-mono text-ink-faint" style={{ fontSize: 12 }}>
+            <span className="font-mono text-ink-faint" style={{ fontSize: 13, fontWeight: "bold" }}>
               writeups &amp; notes
             </span>
           </div>
@@ -89,7 +83,7 @@ export default function Veranda() {
             <ListRow key={item.href + i} href={item.href} closeBottom={i === FEED.length - 1}>
               <span
                 className="font-mono text-ink-faint"
-                style={{ fontSize: 12, width: 80, flex: "none" }}
+                style={{ fontSize: 13, fontWeight: "bold", width: 80, flex: "none" }}
               >
                 {item.date}
               </span>

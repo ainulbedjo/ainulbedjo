@@ -13,7 +13,7 @@ export default function LeetCodeList() {
         <div style={{ paddingTop: 70, paddingBottom: 34 }}>
           <div
             className="font-mono text-ink-faint"
-            style={{ fontSize: 12, letterSpacing: 1, marginBottom: 22 }}
+            style={{ fontSize: 13, fontWeight: "bold", letterSpacing: 1, marginBottom: 22 }}
           >
             THE PROBLEM SET
           </div>
@@ -65,7 +65,8 @@ export default function LeetCodeList() {
               gridTemplateColumns: TABLE_COLUMNS,
               gap: 16,
               padding: "12px 0",
-              fontSize: 11,
+              fontSize: 13,
+              fontWeight: "bold",
               letterSpacing: "0.5px",
               borderBottom: "1.5px solid #1a1a1a",
             }}
@@ -79,7 +80,7 @@ export default function LeetCodeList() {
 
           {PROBLEMS.map((p) => (
             <ListRow key={p.slug} href={`/leetcode/${p.slug}`} columns={TABLE_COLUMNS}>
-              <span className="font-mono text-ink-faint" style={{ fontSize: 13 }}>
+              <span className="font-mono text-ink-faint" style={{ fontSize: 13, fontWeight: "bold" }}>
                 {p.number}
               </span>
               <span style={{ fontSize: 21, fontWeight: 500 }}>{p.title}</span>
@@ -87,7 +88,7 @@ export default function LeetCodeList() {
               <Tag>{p.topic}</Tag>
               <span
                 className="font-mono text-ink-faint"
-                style={{ fontSize: 12, textAlign: "right" }}
+                style={{ fontSize: 13, fontWeight: "bold", textAlign: "right" }}
               >
                 {p.date}
               </span>
