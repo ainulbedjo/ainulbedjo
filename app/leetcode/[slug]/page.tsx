@@ -77,7 +77,7 @@ export default async function SolutionPage({
           <Link
             href="/leetcode"
             className="inline-flex items-center font-mono text-ink-faint"
-            style={{ fontSize: 12, gap: 8 }}
+            style={{ fontSize: 13, fontWeight: "bold", gap: 8 }}
           >
             <svg width="26" height="12" viewBox="0 0 26 12" aria-hidden="true">
               <path d="M24 6 H 4" stroke="#9a9a9a" strokeWidth="1.6" strokeLinecap="round" fill="none" />
@@ -99,7 +99,7 @@ export default async function SolutionPage({
       <Container size="lg">
         <div style={{ paddingTop: 24, paddingBottom: 30 }}>
           <div className="flex items-center" style={{ gap: 14, marginBottom: 14 }}>
-            <span className="font-mono text-ink-faint" style={{ fontSize: 13 }}>
+            <span className="font-mono text-ink-faint" style={{ fontSize: 13, fontWeight: "bold" }}>
               #{problem.number}
             </span>
             <Difficulty level={problem.difficulty} variant="solid" />
@@ -113,7 +113,7 @@ export default async function SolutionPage({
           </h1>
           <div
             className="flex font-mono text-ink-faint"
-            style={{ gap: 26, marginTop: 16, fontSize: 12 }}
+            style={{ gap: 26, marginTop: 16, fontSize: 13, fontWeight: "bold" }}
           >
             {problem.solvedOn ? <span>SOLVED {problem.solvedOn}</span> : null}
             {problem.runtime ? (
@@ -220,7 +220,7 @@ export default async function SolutionPage({
               }}
             >
               <OutlineCard padding="16px 18px">
-                <div className="font-mono text-ink-faint" style={{ fontSize: 11, marginBottom: 8 }}>
+                <div className="font-mono text-ink-faint" style={{ fontSize: 13, fontWeight: "bold", marginBottom: 8 }}>
                   TIME
                 </div>
                 <div className="font-mono" style={{ fontSize: 22, fontWeight: 700 }}>
@@ -231,7 +231,7 @@ export default async function SolutionPage({
                 </div>
               </OutlineCard>
               <OutlineCard padding="16px 18px">
-                <div className="font-mono text-ink-faint" style={{ fontSize: 11, marginBottom: 8 }}>
+                <div className="font-mono text-ink-faint" style={{ fontSize: 13, fontWeight: "bold", marginBottom: 8 }}>
                   SPACE
                 </div>
                 <div className="font-mono" style={{ fontSize: 22, fontWeight: 700 }}>
@@ -256,7 +256,7 @@ export default async function SolutionPage({
             <Link
               href="/leetcode"
               className="font-mono text-ink-faint"
-              style={{ fontSize: 13 }}
+              style={{ fontSize: 13, fontWeight: "bold" }}
             >
               {detail.prev ? `← ${detail.prev.label}` : ""}
             </Link>

@@ -42,6 +42,34 @@ export function HandUnderline({ color = "#1a1a1a", width = 60, className }: Unde
   );
 }
 
+/**
+ * Wobbly hand-drawn square frame — sits behind/around a portrait or image.
+ * Render it absolutely-positioned as a sibling overlay so the photo shows
+ * through the middle. The path traces a rounded-ish square with a deliberate
+ * wobble so it reads as ink, not a CSS border. See DESIGN_SYSTEM.md §6.
+ */
+export function HandFrame({ color = "#1a1a1a", className }: MarkProps) {
+  return (
+    <svg
+      viewBox="0 0 105 105"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+      className={className}
+      style={{ position: "absolute", inset: 0, width: "105%", height: "105%" }}
+    >
+      <path
+        d="M4 6 C 30 3, 62 5, 95 4 C 97 30, 96 64, 96 95 C 66 97, 34 95, 5 96 C 3 66, 5 34, 4 6 Z"
+        fill="none"
+        stroke={color}
+        strokeWidth="5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        vectorEffect="non-scaling-stroke"
+      />
+    </svg>
+  );
+}
+
 type ArrowProps = MarkProps & {
   /** Overall width in px; height scales with the viewBox. */
   width?: number;

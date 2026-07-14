@@ -12,38 +12,38 @@ type Project = {
 const PROJECTS: Project[] = [
   {
     index: "01",
-    kind: "SIDE PROJECT",
-    name: "Veranda",
+    kind: "AT AMARTHA",
+    name: "Legacy → Flutter",
     blurb:
-      "The little CMS behind this site. Markdown in, hand-drawn feel out — with a post manager I'm building next.",
-    stack: ["Go", "SQLite", "htmx"],
+      "Led the migration of a large Kotlin codebase to Flutter and re-architected the repayment data source onto Firestore — cross-platform, cleaner, and easier to maintain.",
+    stack: ["Flutter", "Kotlin", "Firestore"],
     href: "#",
   },
   {
     index: "02",
-    kind: "OPEN SOURCE",
-    name: "ledgerd",
+    kind: "DESIGN SYSTEM",
+    name: "Shared UI Kit",
     blurb:
-      "An event-sourced double-entry ledger daemon. Append-only, deterministic replays, ~2k ⭐ and counting.",
-    stack: ["Rust", "RocksDB", "gRPC"],
+      "Built and maintain the reusable component library that keeps the app's screens consistent — the same hand-crafted, design-system mindset behind this site.",
+    stack: ["Flutter", "Dart"],
     href: "#",
   },
   {
     index: "03",
-    kind: "TOOL",
-    name: "grepbook",
+    kind: "TOOLING",
+    name: "Release Pipeline",
     blurb:
-      "A CLI that turns my solved LeetCode notes into a searchable, offline flashcard deck. Powers the writeups here.",
-    stack: ["Python", "Typer"],
+      "CI/CD tooling that smooths out the release cycle and automatically prunes unused dependencies & assets so the codebase stays lean.",
+    stack: ["CI/CD", "Bash", "Fastlane"],
     href: "#",
   },
   {
     index: "04",
-    kind: "EXPERIMENT",
-    name: "tinylsm",
+    kind: "SIDE PROJECT",
+    name: "Stock Market App",
     blurb:
-      "A teaching-sized LSM-tree storage engine I built to finally understand compaction. Fully commented.",
-    stack: ["Go", "no deps"],
+      "A Flutter stock-market app built in collaboration with Samuel Stock — real-time data, charts, and a focus on smooth, responsive UI.",
+    stack: ["Flutter", "Dart"],
     href: "#",
   },
 ];
@@ -61,7 +61,7 @@ function ProjectCard({ project }: { project: Project }) {
       }}
     >
       <div className="flex items-start justify-between">
-        <span className="font-mono text-ink-faint" style={{ fontSize: 11 }}>
+        <span className="font-mono text-ink-faint" style={{ fontSize: 13, fontWeight: "bold" }}>
           {project.index} · {project.kind}
         </span>
         <span className="font-display" style={{ fontSize: 22 }}>
@@ -92,14 +92,14 @@ function ProjectCard({ project }: { project: Project }) {
 export default function Projects() {
   return (
     <>
-      <Nav active="projects" brand="ainulbedjo." size="xl" />
+      <Nav active="projects" brand="ainulbedjo." />
 
       {/* HEADER */}
-      <Container size="xl">
+      <Container>
         <div style={{ paddingTop: 70, paddingBottom: 40 }}>
           <div
             className="font-mono text-ink-faint"
-            style={{ fontSize: 12, letterSpacing: 1, marginBottom: 22 }}
+            style={{ fontSize: 13, fontWeight: "bold", letterSpacing: 1, marginBottom: 22 }}
           >
             THINGS I&apos;VE MADE
           </div>
@@ -120,7 +120,7 @@ export default function Projects() {
       </Container>
 
       {/* PROJECT CARDS */}
-      <Container size="xl">
+      <Container>
         <div
           style={{
             paddingTop: 20,
@@ -136,7 +136,7 @@ export default function Projects() {
         </div>
       </Container>
 
-      <Footer size="xl" />
+      <Footer />
     </>
   );
 }
