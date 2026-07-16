@@ -22,9 +22,9 @@ export function Chip({ children, variant = "outline" }: ChipProps) {
   } as const;
 
   const styles: Record<ChipVariant, React.CSSProperties> = {
-    active: { ...base, background: "#1a1a1a", color: "#fff" },
-    outline: { ...base, border: "1.5px solid #1a1a1a" },
-    muted: { ...base, border: "1.5px solid #dcdcdc", color: "#8a8a8a" },
+    active: { ...base, background: "var(--ink)", color: "var(--paper-white)" },
+    outline: { ...base, border: "var(--rule-heavy)" },
+    muted: { ...base, border: "1.5px solid var(--rule-soft)", color: "var(--ink-soft)" },
   };
 
   return (

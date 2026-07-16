@@ -13,12 +13,12 @@ type FooterProps = {
  * display-font "built on the veranda ✎" sign-off on the right.
  * See DESIGN_SYSTEM.md §5.
  */
-export function Footer({ size = "md", name = "AinulBedjo", year = 2026 }: FooterProps) {
+export function Footer({ size = "lg", name = "AinulBedjo", year = 2026 }: FooterProps) {
   return (
     <Container size={size} className="mt-10 pb-16">
       <div
         className="flex items-center justify-between font-mono text-ink-faint"
-        style={{ borderTop: "1.5px solid #1a1a1a", paddingTop: 22, fontSize: 13, fontWeight: "bold" }}
+        style={{ borderTop: "var(--rule-heavy)", paddingTop: 22, fontSize: 13, fontWeight: "bold" }}
       >
         <span>© {year} {name}</span>
         <span className="font-display text-ink" style={{ fontSize: 16 }}>

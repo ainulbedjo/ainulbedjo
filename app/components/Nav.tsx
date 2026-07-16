@@ -28,7 +28,7 @@ type NavProps = {
  * the rest are faint, and the active one carries the hand-drawn underline.
  * See DESIGN_SYSTEM.md §5.
  */
-export function Nav({ active, brand = "ainulbedjo.", size = "md" }: NavProps) {
+export function Nav({ active, brand = "ainulbedjo.", size = "lg" }: NavProps) {
   return (
     <Container size={size}>
       <nav className="flex flex-wrap items-center justify-between py-7" style={{ gap: 16 }}>

@@ -26,7 +26,7 @@ export function OutlineCard({
   return (
     <div
       className={className}
-      style={{ border: "1.5px solid #1a1a1a", borderRadius: radius, padding }}
+      style={{ border: "var(--rule-heavy)", borderRadius: radius, padding }}
     >
       {eyebrow ? (
         <div

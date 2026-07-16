@@ -19,7 +19,7 @@ export function Difficulty({ level, variant = "plain" }: DifficultyProps) {
         style={{
           fontSize: 11,
           fontWeight: 700,
-          background: "#1a1a1a",
+          background: "var(--ink)",
           padding: "5px 11px",
           borderRadius: 3,
           letterSpacing: "0.5px",

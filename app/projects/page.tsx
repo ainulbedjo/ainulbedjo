@@ -1,77 +1,42 @@
+import Link from "next/link";
 import { Nav, Footer, Container } from "@/app/components";
+import { PROJECTS, type Project } from "./projects-data";
 
-type Project = {
-  index: string;
-  kind: string;
-  name: string;
-  blurb: string;
-  stack: string[];
-  href: string;
-};
-
-const PROJECTS: Project[] = [
-  {
-    index: "01",
-    kind: "AT AMARTHA",
-    name: "Legacy → Flutter",
-    blurb:
-      "Led the migration of a large Kotlin codebase to Flutter and re-architected the repayment data source onto Firestore — cross-platform, cleaner, and easier to maintain.",
-    stack: ["Flutter", "Kotlin", "Firestore"],
-    href: "#",
-  },
-  {
-    index: "02",
-    kind: "DESIGN SYSTEM",
-    name: "Shared UI Kit",
-    blurb:
-      "Built and maintain the reusable component library that keeps the app's screens consistent — the same hand-crafted, design-system mindset behind this site.",
-    stack: ["Flutter", "Dart"],
-    href: "#",
-  },
-  {
-    index: "03",
-    kind: "TOOLING",
-    name: "Release Pipeline",
-    blurb:
-      "CI/CD tooling that smooths out the release cycle and automatically prunes unused dependencies & assets so the codebase stays lean.",
-    stack: ["CI/CD", "Bash", "Fastlane"],
-    href: "#",
-  },
-  {
-    index: "04",
-    kind: "SIDE PROJECT",
-    name: "Stock Market App",
-    blurb:
-      "A Flutter stock-market app built in collaboration with Samuel Stock — real-time data, charts, and a focus on smooth, responsive UI.",
-    stack: ["Flutter", "Dart"],
-    href: "#",
-  },
-];
-
-function ProjectCard({ project }: { project: Project }) {
+function ProjectCard({ project, lead = false }: { project: Project; lead?: boolean }) {
+  const hasDetail = Boolean(project.detail);
+  const href = hasDetail ? `/projects/${project.slug}` : "#";
   return (
-    <a
-      href={project.href}
-      className="flex flex-col"
-      style={{
-        border: "1.5px solid #1a1a1a",
-        borderRadius: 4,
-        padding: 30,
-        minHeight: 280,
-      }}
+    <Link
+      href={href}
+      className={`project-card flex flex-col${lead ? " project-card--lead" : ""}`}
     >
       <div className="flex items-start justify-between">
         <span className="font-mono text-ink-faint" style={{ fontSize: 13, fontWeight: "bold" }}>
-          {project.index} · {project.kind}
+          {project.kind}
         </span>
-        <span className="font-display" style={{ fontSize: 22 }}>
+        <span
+          className="font-display"
+          style={{ fontSize: 22, color: hasDetail ? "var(--ink)" : "var(--ink-ghost)" }}
+        >
           ↗
         </span>
       </div>
-      <h2 className="font-display" style={{ fontWeight: 700, fontSize: 32, margin: "20px 0 0" }}>
+      <h2
+        className="project-card__name font-display"
+        style={{ fontWeight: 700, margin: "20px 0 0" }}
+      >
         {project.name}
       </h2>
-      <p style={{ fontSize: 18, lineHeight: 1.6, margin: "12px 0 0", color: "#444", flex: 1 }}>
+      <p
+        style={{
+          fontSize: 18,
+          lineHeight: 1.6,
+          margin: "12px 0 0",
+          color: "var(--ink-body)",
+          maxWidth: lead ? 620 : undefined,
+          flex: 1,
+        }}
+      >
         {project.blurb}
       </p>
       <div className="flex flex-wrap" style={{ gap: 8, marginTop: 20 }}>
@@ -79,13 +44,13 @@ function ProjectCard({ project }: { project: Project }) {
           <span
             key={tech}
             className="font-mono text-ink-soft"
-            style={{ fontSize: 11, border: "1px solid #dcdcdc", padding: "5px 10px", borderRadius: 3 }}
+            style={{ fontSize: 11, border: "1px solid var(--rule-soft)", padding: "5px 10px", borderRadius: 3 }}
           >
             {tech}
           </span>
         ))}
       </div>
-    </a>
+    </Link>
   );
 }
 
@@ -96,16 +61,10 @@ export default function Projects() {
 
       {/* HEADER */}
       <Container>
-        <div style={{ paddingTop: 70, paddingBottom: 40 }}>
-          <div
-            className="font-mono text-ink-faint"
-            style={{ fontSize: 13, fontWeight: "bold", letterSpacing: 1, marginBottom: 22 }}
-          >
-            THINGS I&apos;VE MADE
-          </div>
+        <div className="pt-5 pb-6">
           <h1
-            className="font-display"
-            style={{ fontWeight: 600, fontSize: 64, lineHeight: 1.05, margin: 0, letterSpacing: "-1px" }}
+            className="page-title font-display"
+            style={{ fontWeight: 600, lineHeight: 1.05, margin: 0, letterSpacing: "-1px" }}
           >
             Projects.
           </h1>
@@ -119,19 +78,11 @@ export default function Projects() {
         </div>
       </Container>
 
-      {/* PROJECT CARDS */}
+      {/* PROJECT CARDS — the newest leads full-width, the rest pair off. */}
       <Container>
-        <div
-          style={{
-            paddingTop: 20,
-            paddingBottom: 20,
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: 24,
-          }}
-        >
-          {PROJECTS.map((p) => (
-            <ProjectCard key={p.index} project={p} />
+        <div className="project-grid" style={{ paddingTop: 20, paddingBottom: 20 }}>
+          {PROJECTS.map((p, i) => (
+            <ProjectCard key={p.slug} project={p} lead={i === 0} />
           ))}
         </div>
       </Container>

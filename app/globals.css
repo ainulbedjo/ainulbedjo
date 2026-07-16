@@ -27,6 +27,11 @@
   /* Lines */
   --color-rule: #ececec;
   --color-rule-soft: #dcdcdc;
+  --color-rule-warm: #ddd4c0;
+
+  /* Image wells — the tan a photo sits on before it loads */
+  --color-well: #efe7d6;
+  --color-ink-ghost: #c9bfa8;
 
   /* Code surface (dark) */
   --color-code-bg: #1a1a1a;
@@ -52,9 +57,17 @@
   --ink-soft: #8a8a8a;
   --ink-faint: #858585;
 
-  --rule: #ececec;
+  --rule: #bfbfbf;
   --rule-soft: #dcdcdc;
+  --rule-warm: #ddd4c0;
   --rule-ink: #1a1a1a;
+
+  --well: #efe7d6;
+  --ink-ghost: #c9bfa8;
+
+  /* The heavy structural rule + crisp outline (DESIGN_SYSTEM.md §4) */
+  --rule-heavy: 1.5px solid var(--ink);
+  --rule-hair: 1px solid var(--rule);
 
   --code-bg: #1a1a1a;
   --code-bar: #141414;
@@ -90,5 +103,206 @@ a {
 
 ::selection {
   background: var(--ink);
-  color: #fff;
+  color: var(--paper-white);
+}
+
+/* ============================================================
+   Veranda hero — prose left, plant right. Single column until
+   there's room for the plant to sit beside the text.
+   ============================================================ */
+
+.hero__title {
+  font-size: 78px;
+  overflow-wrap: anywhere;
+}
+
+.hero__plant {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) clamp(140px, 15vw, 190px);
+    gap: 56px;
+    align-items: center;
+  }
+
+  .hero__plant {
+    display: block;
+    justify-self: end;
+    pointer-events: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero__title {
+    font-size: 56px;
+    letter-spacing: -1px;
+  }
+}
+
+/* ============================================================
+   About header — prose + framed portrait
+   ============================================================ */
+
+.page-title {
+  font-size: 64px;
+  overflow-wrap: anywhere;
+}
+
+.about-head__portrait {
+  position: relative;
+  width: 260px;
+  height: 260px;
+  transform: rotate(-1.5deg);
+  margin-top: 40px;
+}
+
+@media (min-width: 860px) {
+  .about-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    gap: 56px;
+    align-items: center;
+  }
+
+  .about-head__portrait {
+    width: 340px;
+    height: 340px;
+    justify-self: end;
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .page-title {
+    font-size: 46px;
+  }
+}
+
+/* ============================================================
+   Projects index — the newest project leads, the rest pair off
+   ============================================================ */
+
+.project-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
+}
+
+.project-card {
+  border: var(--rule-heavy);
+  border-radius: 4px;
+  padding: 30px;
+  min-height: 260px;
+}
+
+.project-card__name {
+  font-size: 32px;
+  overflow-wrap: anywhere;
+}
+
+@media (min-width: 780px) {
+  .project-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .project-card--lead {
+    grid-column: 1 / -1;
+    min-height: 220px;
+  }
+
+  .project-card--lead .project-card__name {
+    font-size: 42px;
+  }
+}
+
+/* ============================================================
+   Project case-study galleries
+   ============================================================ */
+
+.gallery-rail {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.gallery-rail__item {
+  flex: none;
+  width: 250px;
+}
+
+.gallery-pair {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 640px) {
+  .gallery-pair {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ============================================================
+   The veranda plant (HandPlant) — draws itself on, then sways.
+   Pure CSS, no library. See DESIGN_SYSTEM.md §6.
+   ============================================================ */
+
+.hand-plant {
+  transform-origin: 50% 100%;
+  animation: plant-sway 7s ease-in-out 2.1s infinite;
+}
+
+.hand-plant path {
+  stroke-dasharray: var(--len);
+  stroke-dashoffset: var(--len);
+  animation: plant-draw 0.7s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+}
+
+/* Stem is the long one — its own length and a slower draw. */
+.hand-plant path:nth-of-type(1) {
+  --len: 210;
+  animation-duration: 1.3s;
+  animation-delay: 0s;
+}
+.hand-plant path:nth-of-type(2) { --len: 105; animation-delay: 0.45s; }
+.hand-plant path:nth-of-type(3) { --len: 105; animation-delay: 0.62s; }
+.hand-plant path:nth-of-type(4) { --len: 100; animation-delay: 0.79s; }
+.hand-plant path:nth-of-type(5) { --len: 100; animation-delay: 0.96s; }
+.hand-plant path:nth-of-type(6) {
+  --len: 45;
+  animation-duration: 0.6s;
+  animation-delay: 1.25s;
+}
+
+@keyframes plant-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes plant-sway {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  30% {
+    transform: rotate(1.6deg);
+  }
+  70% {
+    transform: rotate(-1.8deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hand-plant,
+  .hand-plant path {
+    animation: none;
+  }
+  .hand-plant path {
+    stroke-dashoffset: 0;
+  }
 }

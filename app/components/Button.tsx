@@ -33,18 +33,18 @@ export function Button({
 }: ButtonProps) {
   const style: React.CSSProperties =
     variant === "underline"
-      ? { fontSize: 13, fontWeight: 500, borderBottom: "2px solid #1a1a1a", paddingBottom: 3 }
-      : { gap: 9, fontSize: 13, fontWeight: 500, padding: "13px 22px", borderRadius: 3 };
+      ? { fontSize: 13, fontWeight: 500, borderBottom: "2px solid var(--ink)", paddingBottom: 3 }
+      : { gap: 9, fontSize: 13, fontWeight: 500, padding: "13px 22px", borderRadius: 3, color: "var(--paper-white)" };
 
   const classes =
     variant === "underline"
       ? `inline-flex items-center font-mono text-ink ${className}`
-      : `inline-flex items-center bg-ink font-mono text-white ${className}`;
+      : `inline-flex items-center bg-ink font-mono ${className}`;
 
   const content = (
     <>
       {children}
-      {variant === "solid" && withArrow ? <HandArrow color="#fff" /> : null}
+      {variant === "solid" && withArrow ? <HandArrow color="var(--paper-white)" /> : null}
     </>
   );
 

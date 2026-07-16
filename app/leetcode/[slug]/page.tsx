@@ -35,7 +35,7 @@ function Note({ block }: { block: NoteBlock }) {
       return (
         <div
           style={{
-            borderLeft: "2px solid #1a1a1a",
+            borderLeft: "2px solid var(--ink)",
             paddingLeft: 16,
             margin: "0 0 20px",
             transform: "rotate(-0.4deg)",
@@ -69,10 +69,10 @@ export default async function SolutionPage({
 
   return (
     <>
-      <Nav active="leetcode" brand="ainulbedjo." size="lg" />
+      <Nav active="leetcode" brand="ainulbedjo." />
 
       {/* BREADCRUMB */}
-      <Container size="lg">
+      <Container>
         <div style={{ paddingTop: 26 }}>
           <Link
             href="/leetcode"
@@ -80,10 +80,10 @@ export default async function SolutionPage({
             style={{ fontSize: 13, fontWeight: "bold", gap: 8 }}
           >
             <svg width="26" height="12" viewBox="0 0 26 12" aria-hidden="true">
-              <path d="M24 6 H 4" stroke="#9a9a9a" strokeWidth="1.6" strokeLinecap="round" fill="none" />
+              <path d="M24 6 H 4" stroke="var(--ink-soft)" strokeWidth="1.6" strokeLinecap="round" fill="none" />
               <path
                 d="M8 2 L 3 6 L 8 10"
-                stroke="#9a9a9a"
+                stroke="var(--ink-soft)"
                 strokeWidth="1.6"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -96,7 +96,7 @@ export default async function SolutionPage({
       </Container>
 
       {/* PROBLEM HEADER */}
-      <Container size="lg">
+      <Container>
         <div style={{ paddingTop: 24, paddingBottom: 30 }}>
           <div className="flex items-center" style={{ gap: 14, marginBottom: 14 }}>
             <span className="font-mono text-ink-faint" style={{ fontSize: 13, fontWeight: "bold" }}>
@@ -128,7 +128,7 @@ export default async function SolutionPage({
                 <a
                   href={problem.url}
                   className="text-ink"
-                  style={{ borderBottom: "1.5px solid #1a1a1a", paddingBottom: 1 }}
+                  style={{ borderBottom: "var(--rule-heavy)", paddingBottom: 1 }}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -141,7 +141,7 @@ export default async function SolutionPage({
       </Container>
 
       {/* PROBLEM STATEMENT */}
-      <Container size="lg">
+      <Container>
         <div style={{ paddingBottom: 10 }}>
           <OutlineCard eyebrow="THE PROBLEM">
             <p
@@ -151,7 +151,7 @@ export default async function SolutionPage({
             />
             <div
               className="flex flex-wrap font-mono"
-              style={{ gap: 30, marginTop: 18, fontSize: 13, color: "#444" }}
+              style={{ gap: 30, marginTop: 18, fontSize: 13, color: "var(--ink-body)" }}
             >
               <span>
                 <span className="text-ink-faint">example →</span> &nbsp;
@@ -166,7 +166,7 @@ export default async function SolutionPage({
       </Container>
 
       {/* TWO COLUMN: NOTES + CODE */}
-      <Container size="lg">
+      <Container>
         <div
           style={{
             paddingTop: 30,
@@ -248,10 +248,10 @@ export default async function SolutionPage({
 
       {/* PREV / NEXT */}
       {detail.prev || detail.next ? (
-        <Container size="lg">
+        <Container>
           <div
             className="flex justify-between"
-            style={{ paddingTop: 30, paddingBottom: 10, borderTop: "1px solid #ececec" }}
+            style={{ paddingTop: 30, paddingBottom: 10, borderTop: "var(--rule-hair)" }}
           >
             <Link
               href="/leetcode"
@@ -267,7 +267,7 @@ export default async function SolutionPage({
         </Container>
       ) : null}
 
-      <Footer size="lg" />
+      <Footer />
     </>
   );
 }

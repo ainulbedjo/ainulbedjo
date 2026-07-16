@@ -13,4 +13,4 @@ export { Difficulty, type Level } from "./Difficulty";
 export { ListRow } from "./ListRow";
 export { OutlineCard } from "./OutlineCard";
 export { CodeBlock, type CodeLine } from "./CodeBlock";
-export { HandUnderline, HandArrow, HandFrame } from "./marks";
+export { HandUnderline, HandArrow, HandFrame, HandPlant } from "./marks";

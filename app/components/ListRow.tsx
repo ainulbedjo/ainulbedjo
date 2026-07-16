@@ -25,8 +25,8 @@ export function ListRow({
   className = "",
 }: ListRowProps) {
   const style: React.CSSProperties = {
-    borderTop: "1px solid #ececec",
-    ...(closeBottom ? { borderBottom: "1px solid #ececec" } : {}),
+    borderTop: "var(--rule-hair)",
+    ...(closeBottom ? { borderBottom: "var(--rule-hair)" } : {}),
     ...(columns
       ? {
           display: "grid",

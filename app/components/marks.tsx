@@ -4,7 +4,7 @@
  */
 
 type MarkProps = {
-  /** Stroke color; defaults to ink. */
+  /** Stroke color; inherits the ink of whatever it sits in by default. */
   color?: string;
   className?: string;
 };
@@ -23,7 +23,7 @@ type UnderlineProps = MarkProps & {
  * the caller (Nav does this). The wobble path scales with `width` so short
  * words ("about") don't get an overshooting stroke.
  */
-export function HandUnderline({ color = "#1a1a1a", width = 60, className }: UnderlineProps) {
+export function HandUnderline({ color = "currentColor", width = 60, className }: UnderlineProps) {
   // Scale the control points from a 60px reference path.
   const s = width / 60;
   const r = (n: number) => +(n * s).toFixed(1);
@@ -48,7 +48,7 @@ export function HandUnderline({ color = "#1a1a1a", width = 60, className }: Unde
  * through the middle. The path traces a rounded-ish square with a deliberate
  * wobble so it reads as ink, not a CSS border. See DESIGN_SYSTEM.md §6.
  */
-export function HandFrame({ color = "#1a1a1a", className }: MarkProps) {
+export function HandFrame({ color = "currentColor", className }: MarkProps) {
   return (
     <svg
       viewBox="0 0 105 105"
@@ -70,6 +70,40 @@ export function HandFrame({ color = "#1a1a1a", className }: MarkProps) {
   );
 }
 
+/**
+ * The veranda plant — a stem, four leaves and a bud that draw themselves on,
+ * then sway from the soil. Pure CSS: each path is dashed to its own length and
+ * the offset animates to 0, staggered so the plant grows bottom-up. The sway
+ * waits for the drawing to finish. Both cut out under reduced-motion.
+ *
+ * The signature illustration allowed by DESIGN_SYSTEM.md §6 — one per site.
+ */
+export function HandPlant({ color = "currentColor", className }: MarkProps) {
+  return (
+    <svg
+      viewBox="0 0 120 220"
+      aria-hidden="true"
+      className={`hand-plant ${className ?? ""}`}
+      style={{ width: "100%", height: "auto", display: "block" }}
+      fill="none"
+      stroke={color}
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      {/* stem — drawn first, root to tip */}
+      <path d="M60 216 C 61 170, 57 120, 60 78 C 62 50, 59 27, 60 10" />
+      {/* leaves — alternating, low to high */}
+      <path d="M60 168 C 39 161, 25 145, 27 120 C 52 125, 65 145, 60 168 Z" />
+      <path d="M60 136 C 83 129, 97 111, 95 86 C 69 91, 55 113, 60 136 Z" />
+      <path d="M60 102 C 41 96, 30 81, 32 58 C 55 63, 66 81, 60 102 Z" />
+      <path d="M60 73 C 81 67, 93 52, 91 32 C 67 37, 55 55, 60 73 Z" />
+      {/* bud */}
+      <path d="M60 26 C 52 19, 52 10, 60 4 C 68 10, 68 19, 60 26 Z" />
+    </svg>
+  );
+}
+
 type ArrowProps = MarkProps & {
   /** Overall width in px; height scales with the viewBox. */
   width?: number;
@@ -78,7 +112,7 @@ type ArrowProps = MarkProps & {
 /**
  * Curving arrow used inside primary buttons and "see all" links.
  */
-export function HandArrow({ color = "#1a1a1a", width = 20, className }: ArrowProps) {
+export function HandArrow({ color = "currentColor", width = 20, className }: ArrowProps) {
   const height = (width * 14) / 20;
   return (
     <svg

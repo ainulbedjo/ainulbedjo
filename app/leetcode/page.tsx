@@ -6,11 +6,11 @@ const TABLE_COLUMNS = "64px 1fr 120px 150px 90px";
 export default function LeetCodeList() {
   return (
     <>
-      <Nav active="leetcode" brand="ainulbedjo." />
+      <Nav active="leetcode" />
 
       {/* HEADER */}
       <Container>
-        <div style={{ paddingTop: 70, paddingBottom: 34 }}>
+        <div className="pt-5 pb-6">
           <div
             className="font-mono text-ink-faint"
             style={{ fontSize: 13, fontWeight: "bold", letterSpacing: 1, marginBottom: 22 }}
@@ -68,7 +68,7 @@ export default function LeetCodeList() {
               fontSize: 13,
               fontWeight: "bold",
               letterSpacing: "0.5px",
-              borderBottom: "1.5px solid #1a1a1a",
+              borderBottom: "var(--rule-heavy)",
             }}
           >
             <span>#</span>

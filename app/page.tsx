@@ -1,4 +1,4 @@
-import { Nav, Footer, Container, Button, ListRow } from "@/app/components";
+import { Nav, Footer, Container, Button, ListRow, HandPlant } from "@/app/components";
 
 type FeedItem = {
   href: string;
@@ -35,34 +35,35 @@ export default function Veranda() {
 
       {/* HERO */}
       <Container>
-        <div className="pt-12 pb-6">
-          <div
-            className="font-mono text-ink-faint"
-            style={{ fontSize: 13, fontWeight: "bold", letterSpacing: 1, marginBottom: 26 }}
-          >
-            THE VERANDA — EST. 2026
+        <div className="hero pt-5 pb-6">
+          <div>
+            <h1
+              className="hero__title font-display"
+              style={{ fontWeight: 600, lineHeight: 1.02, margin: 0, letterSpacing: "-1.5px" }}
+            >
+              Hi, I&apos;m Ainul.
+            </h1>
+            <p
+              className="text-ink-body"
+              style={{ fontSize: 23, lineHeight: 1.7, maxWidth: 580, margin: "30px 0 0" }}
+            >
+              Software engineer &amp; full-time tinkerer. I build mobile apps, explore new
+              tech, and write about what I learn along the way. Also some leetcode
+              problems, because I like to keep my brain sharp.
+            </p>
+            <div className="flex flex-wrap items-center" style={{ gap: 22, marginTop: 36 }}>
+              <Button href="/about" withArrow>
+                more about me
+              </Button>
+              <Button href="#recent" variant="underline">
+                read the latest
+              </Button>
+            </div>
           </div>
-          <h1
-            className="font-display"
-            style={{ fontWeight: 600, fontSize: 78, lineHeight: 1.02, margin: 0, letterSpacing: "-1.5px" }}
-          >
-            Hi, I&apos;m Ainul.
-          </h1>
-          <p
-            className="text-ink-body"
-            style={{ fontSize: 23, lineHeight: 1.7, maxWidth: 580, margin: "30px 0 0" }}
-          >
-            Software engineer &amp; full-time tinkerer. 
-            I build mobile apps, explore new tech, and write about what I learn along the way.
-            Also some leetcode problems, because I like to keep my brain sharp.
-          </p>
-          <div className="flex items-center" style={{ gap: 22, marginTop: 36 }}>
-            <Button href="/about" withArrow>
-              more about me
-            </Button>
-            <Button href="#recent" variant="underline">
-              read the latest
-            </Button>
+
+          {/* The plant — grows on load, then sways. Decorative. */}
+          <div className="hero__plant text-ink">
+            <HandPlant />
           </div>
         </div>
       </Container>

@@ -38,7 +38,11 @@ const TOOLKIT = [
   "Crashlytics",
 ];
 
-/** A resume row: a 220px label column + content. */
+/**
+ * A resume section: heading + meta stacked above the content, separated from
+ * the previous section by a rule. Single column — the rule carries the
+ * structure, so the heading doesn't need a margin to hang in.
+ */
 function ResumeRow({
   heading,
   meta,
@@ -51,25 +55,22 @@ function ResumeRow({
   children: React.ReactNode;
 }) {
   return (
-    <div
+    <section
       style={{
-        display: "grid",
-        gridTemplateColumns: "220px 1fr",
-        gap: 40,
         padding: "36px 0",
-        borderTop: heavyRule ? "1.5px solid #1a1a1a" : "1px solid #ececec",
+        borderTop: heavyRule ? "var(--rule-heavy)" : "1px solid var(--rule-soft)",
       }}
     >
-      <div>
+      <div className="flex items-baseline" style={{ gap: 14, marginBottom: 24 }}>
         <h2 className="font-display" style={{ fontWeight: 700, fontSize: 24, margin: 0 }}>
           {heading}
         </h2>
-        <div className="font-mono text-ink-faint" style={{ fontSize: 13, fontWeight: "bold", marginTop: 6 }}>
+        <span className="font-mono text-ink-faint" style={{ fontSize: 13, fontWeight: "bold" }}>
           {meta}
-        </div>
+        </span>
       </div>
-      <div>{children}</div>
-    </div>
+      {children}
+    </section>
   );
 }
 
@@ -79,11 +80,14 @@ function DatedEntry({ title, period, body }: ResumeEntry) {
     <div>
       <div className="flex items-baseline justify-between" style={{ gap: 16 }}>
         <div style={{ fontSize: 22, fontWeight: 600 }}>{title}</div>
-        <div className="font-mono text-ink-faint" style={{ fontSize: 13, flex: "none", fontWeight: "bold" }}>
+        <div
+          className="font-mono text-ink-faint"
+          style={{ fontSize: 13, flex: "none", fontWeight: "bold", fontVariantNumeric: "tabular-nums" }}
+        >
           {period}
         </div>
       </div>
-      <p style={{ fontSize: 18, lineHeight: 1.65, margin: "8px 0 0", color: "#444" }}>{body}</p>
+      <p style={{ fontSize: 18, lineHeight: 1.65, margin: "8px 0 0", color: "var(--ink-body)" }}>{body}</p>
     </div>
   );
 }
@@ -95,26 +99,11 @@ export default function About() {
 
       {/* HEADER */}
       <Container>
-        <div
-          style={{
-            paddingTop: 70,
-            paddingBottom: 20,
-            display: "grid",
-            gridTemplateColumns: "minmax(0, 1fr) 340px",
-            gap: 56,
-            alignItems: "center",
-          }}
-        >
+        <div className="about-head pt-5 pb-6">
           <div>
-            <div
-              className="font-mono text-ink-faint"
-              style={{ fontSize: 13, letterSpacing: 1, marginBottom: 22, fontWeight: "bold" }}
-            >
-              WHO&apos;S WRITING
-            </div>
             <h1
-              className="font-display"
-              style={{ fontWeight: 600, fontSize: 64, lineHeight: 1.05, margin: 0, letterSpacing: "-1px" }}
+              className="page-title font-display"
+              style={{ fontWeight: 600, lineHeight: 1.05, margin: 0, letterSpacing: "-1px" }}
             >
               A bit about me.
             </h1>
@@ -122,27 +111,20 @@ export default function About() {
               className="text-ink-body"
               style={{ fontSize: 22, lineHeight: 1.75, maxWidth: 640, margin: "28px 0 0" }}
             >
-              I&apos;m Ainul — a software engineer from Indonesia who mainly uses Kotlin and Go. 
-              I&apos;ve been building mobile apps for the past 5 years, and I&apos;m currently working on a fintech company called Amartha.
-              I enjoy exploring new technologies, solving complex problems, and sharing knowledge with the my friends.
+              I&apos;m Ainul — a software engineer from Indonesia who mainly uses Kotlin and Go.
+              I&apos;ve been building mobile apps for the past 5 years, and I&apos;m currently
+              working at a fintech company called Amartha. I enjoy exploring new technologies,
+              solving complex problems, and sharing what I learn with friends.
             </p>
           </div>
 
           {/* Framed portrait — drop the photo at public/portrait.jpg */}
-          <div
-            style={{
-              position: "relative",
-              width: 340,
-              height: 340,
-              transform: "rotate(-1.5deg)",
-              justifySelf: "end",
-            }}
-          >
+          <div className="about-head__portrait text-ink">
             <Image
               src="/portrait.jpg"
               alt="Ainul"
               fill
-              sizes="340px"
+              sizes="(max-width: 860px) 260px, 340px"
               style={{ objectFit: "cover", padding: 10 }}
             />
             <HandFrame />
@@ -181,7 +163,7 @@ export default function About() {
 
           <ResumeRow heading="Lately" meta="OFF THE CLOCK">
             <div style={{ position: "relative" }}>
-              <p style={{ fontSize: 18, lineHeight: 1.7, margin: 0, color: "#444" }}>
+              <p style={{ fontSize: 18, lineHeight: 1.7, margin: 0, color: "var(--ink-body)" }}>
                 Grinding through <strong>graph &amp; DP problems on LeetCode</strong>, tinkering
                 with Kotlin and Go side projects, and poking at CI/CD ideas that make releases less
                 painful. I keep a running list of things I want to build that will probably

@@ -12,46 +12,36 @@ type CodeBlockProps = {
 };
 
 /**
- * Dark code card: a title bar (dot + filename, language + "copy"), then
+ * Dark code card: a typographic title bar (filename, language), then
  * gutter-numbered monospace lines. Comment lines use the muted-green comment
  * color; the gutter is non-selectable. See DESIGN_SYSTEM.md §5.
+ *
+ * No window chrome: the bar is a label + rule, not a fake macOS title bar.
  */
 export function CodeBlock({ filename, language, lines }: CodeBlockProps) {
   return (
-    <div style={{ border: "1.5px solid #1a1a1a", borderRadius: 6, overflow: "hidden" }}>
+    <div style={{ border: "var(--rule-heavy)", borderRadius: 6, overflow: "hidden" }}>
       {/* Title bar */}
       <div
         className="flex items-center justify-between"
-        style={{ padding: "11px 16px", borderBottom: "1px solid #333", background: "#141414" }}
+        style={{
+          padding: "11px 16px",
+          borderBottom: "1px solid var(--ink-body)",
+          background: "var(--code-bar)",
+        }}
       >
-        <div className="flex items-center" style={{ gap: 9 }}>
-          <span
-            style={{ width: 9, height: 9, borderRadius: "50%", border: "1.5px solid #888" }}
-          />
-          <span
-            className="font-mono"
-            style={{ fontSize: 12, fontWeight: 500, color: "#e8e8e8" }}
-          >
-            {filename}
-          </span>
-        </div>
-        <div className="flex items-center" style={{ gap: 12 }}>
-          <span className="font-mono" style={{ fontSize: 11, color: "#8a8a8a" }}>
-            {language}
-          </span>
-          <span
-            className="font-mono"
-            style={{
-              fontSize: 11,
-              border: "1px solid #444",
-              padding: "4px 9px",
-              borderRadius: 3,
-              color: "#ccc",
-            }}
-          >
-            copy
-          </span>
-        </div>
+        <span
+          className="font-mono"
+          style={{ fontSize: 12, fontWeight: 500, color: "var(--code-line)" }}
+        >
+          {filename}
+        </span>
+        <span
+          className="font-mono"
+          style={{ fontSize: 11, letterSpacing: "0.5px", color: "var(--ink-soft)" }}
+        >
+          {language}
+        </span>
       </div>
 
       {/* Lines */}
@@ -62,19 +52,20 @@ export function CodeBlock({ filename, language, lines }: CodeBlockProps) {
           fontSize: 13.5,
           lineHeight: 1.75,
           overflowX: "auto",
-          background: "#1a1a1a",
-          color: "#e2e2e2",
+          background: "var(--code-bg)",
+          color: "var(--code-line)",
         }}
       >
         {lines.map((line, i) => (
           <div key={i} className="flex" style={{ gap: 16 }}>
             <span
               style={{
-                color: "#555",
+                color: "var(--code-gutter)",
                 width: 18,
                 textAlign: "right",
                 flex: "none",
                 userSelect: "none",
+                fontVariantNumeric: "tabular-nums",
               }}
             >
               {i + 1}
@@ -82,7 +73,7 @@ export function CodeBlock({ filename, language, lines }: CodeBlockProps) {
             <span
               style={{
                 whiteSpace: "pre",
-                ...("comment" in line && line.comment ? { color: "#7d9a6d" } : {}),
+                ...("comment" in line && line.comment ? { color: "var(--code-comment)" } : {}),
               }}
             >
               {"blank" in line && line.blank ? " " : (line as { text: string }).text}

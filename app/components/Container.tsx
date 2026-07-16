@@ -25,7 +25,7 @@ const MAX_WIDTH: Record<ContainerSize, number> = {
  * middle. Filling the cross axis first lets max-width + auto margins center it.
  * See DESIGN_SYSTEM.md §4.
  */
-export function Container({ children, size = "md", className = "" }: ContainerProps) {
+export function Container({ children, size = "lg", className = "" }: ContainerProps) {
   const maxWidth = MAX_WIDTH[size];
   return (
     <div
